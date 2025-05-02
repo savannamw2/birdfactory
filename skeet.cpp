@@ -416,96 +416,24 @@ void Skeet::spawn()
 {
    BirdFactoryLevel1 level1;
    BirdFactoryLevel2 level2;
+   BirdFactoryLevel3 level3;
+   BirdFactoryLevel4 level4;
    
-   BirdFactory * factories[2] = {&level1, &level2};
+   
+   BirdFactory * factories[4] = {&level1, &level2, &level3, &level4};
    
    if (time.isStartLevel())
    {
       birds.push_back(factories[time.level()]->factory(STANDARD));
    }
    
-   for (BirdType bt = STANDARD; bt <= CRAZY; bt = static_cast<BirdType>(bt + 1)) 
+   for (BirdType bt = STANDARD; bt <= CRAZY; bt = static_cast<BirdType>(bt + 1))
    {
-       if (random(0, 30) == 1)
-       {
-           Bird* p = factories[time.level()]->factory(bt);
-           if (p)
-           {
-               birds.push_back(p);
-           }
-       }
+      Bird* p = nullptr;
+      if (random(0, 30) == 1 && (p = factories[time.level()]->factory(bt)))
+      {
+         birds.push_back(p);
+      }
    }
    
-//   double size;
-//   switch (time.level())
-//   {
-//      // in level 1 spawn big birds occasionally
-//      case 1:
-//         size = 30.0;
-//         // spawns when there is nothing on the screen
-//         if (birds.size() == 0 && random(0, 15) == 1)
-//            birds.push_back(new Standard(size, 7.0));
-//         
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Standard(size, 7.0));
-//         break;
-//         
-//      // two kinds of birds in level 2
-//      case 2:
-//         size = 25.0;
-//         // spawns when there is nothing on the screen
-//         if (birds.size() == 0 && random(0, 15) == 1)
-//            birds.push_back(new Standard(size, 7.0, 12));
-//
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Standard(size, 5.0, 12));
-//         // spawn every 3 seconds
-//         if (random(0, 3 * 30) == 1)
-//            birds.push_back(new Sinker(size));
-//         break;
-//      
-//      // three kinds of birds in level 3
-//      case 3:
-//         size = 20.0;
-//         // spawns when there is nothing on the screen
-//         if (birds.size() == 0 && random(0, 15) == 1)
-//            birds.push_back(new Standard(size, 5.0, 15));
-//
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Standard(size, 5.0, 15));
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Sinker(size, 4.0, 22));
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Floater(size));
-//         break;
-//         
-//      // three kinds of birds in level 4
-//      case 4:
-//         size = 15.0;
-//         // spawns when there is nothing on the screen
-//         if (birds.size() == 0 && random(0, 15) == 1)
-//            birds.push_back(new Standard(size, 4.0, 18));
-//
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Standard(size, 4.0, 18));
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Sinker(size, 3.5, 25));
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Floater(size, 4.0, 25));
-//         // spawn every 4 seconds
-//         if (random(0, 4 * 30) == 1)
-//            birds.push_back(new Crazy(size));
-//         break;
-         
-//      default:
-//         break;
-//   }
 }

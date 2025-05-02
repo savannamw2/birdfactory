@@ -46,7 +46,7 @@ public:
 
 /*********************************************
  * LEVEL 2
- * Instantiate new bird objects only for level 1 & level 2
+ * Instantiate new bird objects only for level 2
  *********************************************/
 class BirdFactoryLevel2 : public BirdFactory
 {
@@ -68,3 +68,60 @@ public:
    }
    
 };
+
+/*********************************************
+ * LEVEL 3
+ * Instantiate new bird objects only for level 3
+ *********************************************/
+class BirdFactoryLevel3 : public BirdFactory
+{
+public:
+   Bird * factory(BirdType bt)
+   {
+      int size = 20.0;
+      
+      switch (bt)
+      {
+         case STANDARD:
+            return new Standard(size, 5.0, 15);
+         case SINKER:
+            return new Sinker(size, 4.0, 22);
+         case FLOATER:
+            return new Floater(size);
+         default:
+            return nullptr;
+      }
+      
+   }
+   
+};
+
+/*********************************************
+ * LEVEL 4
+ * Instantiate new bird objects only for level 4
+ *********************************************/
+class BirdFactoryLevel4 : public BirdFactory
+{
+public:
+   Bird * factory(BirdType bt)
+   {
+      int size = 15.0;
+      
+      switch (bt)
+      {
+         case STANDARD:
+            return new Standard(size, 4.0, 18);
+         case SINKER:
+            return new Sinker(size, 3.5, 25);
+         case FLOATER:
+            return new Floater(size, 4.0, 25);
+         case CRAZY:
+            return new Crazy(size);
+         default:
+            return nullptr;
+      }
+      
+   }
+   
+};
+
